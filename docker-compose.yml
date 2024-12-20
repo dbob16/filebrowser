@@ -1,0 +1,12 @@
+services:
+  filebrowser:
+    image: dbob16/filebrowser:latest
+    container_name: filebrowser_test
+    restart: unless-stopped
+    environment:
+      REPO_TITLE: Dilan's File Browser
+      REPO_PATH: /test
+    volumes:
+      - /test:/test
+    ports:
+      - 8000:80

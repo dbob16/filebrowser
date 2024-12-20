@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ reponame }}</title>
+</head>
+<style>
+* {
+    padding: 0.2rem;
+    margin: 0.2rem;
+}
+html {
+    color: #ffffff;
+    background-color: #000000;
+    font-size: 16pt;
+}
+ul.itemlist {
+    list-style: none;
+    display: flex;
+    gap: 3px;
+    flex-wrap: wrap;
+}
+ul.itemlist a.link {
+    display: block;
+    text-decoration: none;
+    padding: 5px;
+    color: #ffffff;
+    background-color: #333;
+    border: solid #ffffff 1px;
+    border-radius: 2px;
+    transition: all 0.7s ease;
+    word-break: break-all;
+}
+ul.itemlist a.link:hover {
+    background-color: #339;
+}
+</style>
+<body>
+<h1>{{ reponame }}</h1>
+{% if path %}
+<h2>Path</h2>
+<p>{{ path }}</p>
+{% endif %}
+{% if contents %}
+<h2>Contents:</h2>
+<ul class="itemlist">
+{% for item in contents %}
+<li class="item"><a href="/?r_path={{ item[1] }}" class="link">{{ item[0] }}</a></li>
+{% endfor %}
+</ul>
+{% endif %}
+</body>
+</html>
