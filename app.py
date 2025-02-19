@@ -17,11 +17,14 @@ templates = Jinja2Templates(directory="templates")
 
 @app.get("/")
 def browse(request:Request, r_path:str=""):
-    full_path = os.path.join(filepath, r_path)    
+    previous = None
+    full_path = os.path.join(filepath, r_path)
+    if '/' in r_path:
+        previous = r_path.rsplit('/', maxsplit=1)
     if os.path.isdir(full_path):
         dir_list = os.listdir(full_path)
         dir_list.sort()
         contents = [(item, os.path.join(r_path, item), os.path.isfile(os.path.join(full_path, item))) for item in dir_list]
-        return templates.TemplateResponse(request=request, name="browse.html", context={"reponame": reponame, "path": r_path, "contents": contents})
+        return templates.TemplateResponse(request=request, name="browse.html", context={"reponame": reponame, "path": r_path, "contents": contents, "previous": previous})
     else:
         return FileResponse(full_path)

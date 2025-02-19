@@ -24,7 +24,7 @@ ul.itemlist {
 ul.itemlist a.link {
     display: block;
     text-decoration: none;
-    padding: 5px;
+    padding: 7px;
     color: #ffffff;
     background-color: #333;
     border: solid #ffffff 1px;
@@ -41,7 +41,14 @@ ul.itemlist a.link:hover {
 {% if path %}
 <h2>Path</h2>
 <p>{{ path }}</p>
+<h2>Back to:</h2>
+<ul class="itemlist">
+<li class="item"><a href="/" class="link">Home</a></li>
+{% if previous %}
+<li class="item"><a href="/?r_path={{ previous[0] }}" class="link">{{ previous[0] }}</a></li>
 {% endif %}
+{% endif %}
+</ul>
 {% if contents %}
 <h2>Contents:</h2>
 <ul class="itemlist">
