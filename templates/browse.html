@@ -46,7 +46,19 @@ ul.itemlist a.link:hover {
 <h2>Contents:</h2>
 <ul class="itemlist">
 {% for item in contents %}
-<li class="item"><a href="/?r_path={{ item[1] }}" class="link">{{ item[0] }}</a></li>
+{% if item[2] == True %}
+<li class="item">
+<a href="/?r_path={{ item[1] }}" target="_blank" rel="noopener noreferrer" class="link">
+{{ item[0] }}
+</a>
+</li>
+{% else %}
+<li class="item">
+<a href="/?r_path={{ item[1] }}" class="link">
+{{ item[0] }}
+</a>
+</li>
+{% endif %}
 {% endfor %}
 </ul>
 {% endif %}
